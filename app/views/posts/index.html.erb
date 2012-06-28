@@ -1,0 +1,21 @@
+<h1>Haters Posts</h1>
+<p>
+  <table>
+    <% @posts.each do |post| %>
+  <tr>
+    <p>
+      <td><h3 style="padding-right:25px;"><%= post.title %></h3></td>
+    </p>
+    <p>
+      <td style="padding-right:25px;"><%= post.body %></td>
+    </p>
+    <p>
+    <td><%= link_to 'Show', post %></td>
+    </p>
+  </tr>
+    <% end %>
+  </table>
+</p>
+<br />
+
+<%= link_to 'New Post', new_post_path %>

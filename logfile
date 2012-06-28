@@ -1,0 +1,6 @@
+LOG:  database system was shut down at 2012-06-27 13:01:07 BST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "haters_development" does not exist
+FATAL:  database "haters_test" does not exist
+FATAL:  database "haters_production" does not exist

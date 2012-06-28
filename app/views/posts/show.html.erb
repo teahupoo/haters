@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @post.body %>
+</p>
+
+<% if @post.id == current_user.id %>
+  <%= link_to 'Edit', edit_post_path(@post) %>]
+  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% else %>
+  <%= link_to 'Back', posts_path %>
+<% end %>

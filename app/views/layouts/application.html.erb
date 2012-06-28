@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Haters</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar navbar=fixed-top">
+    <div class="navbar-inner">
+      <div class="container"
+        <a class="btn btn-navbar" data-toggle="collapse"
+          data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Haters</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Home", root_url %></li>
+            <% if user_signed_in? %>
+              <li style=""><%= link_to "Haters Posts", "/posts" %></li>
+              <li style="padding-left:105px;padding-top:10px;"><%= current_user[:email] %></li>
+              <li style="padding-left:335px;"><%= link_to "Log out", "/users/sign_out" %></li>
+              <% else %>
+              <li><%= link_to "Log in", "/users/sign_in"%></li>        
+              <li style="padding-left:635px;"><%= link_to "Sign up", "/users/sign_up"%></li>
+              <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div  class="row">
+    <div class="span8">
+       <%= yield %>
+    </div>
+    <div class="span2">
+      <h2 style="padding-left:20px;">@hate_rs</h2>
+        <div style="font-size:10px;padding-bottom:5px;">
+          <% Twitter.user_timeline("hate_rs", :count => 5).each { |t| %>
+            <p>@hate_rs: 
+            <%= t.full_text -%>
+            </p>
+          <% } %>
+          <div class="twitter_feed" style="padding-top:5px;padding-left:27px;">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="Hate_rs" data-count="none">Tweet</a>
+            <script>
+              !function(d,s,id){
+                var js,fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){js=d.createElement(s);
+                  js.id=id;js.src="//platform.twitter.com/widgets.js";
+                  fjs.parentNode.insertBefore(js,fjs);
+                }
+              }
+                (document,"script","twitter-wjs");
+            </script>
+            <a href="https://twitter.com/Hate_rs" class="twitter-follow-button" data-show-count ="false" data-show-screen-name="false">Follow @Hate_rs</a>
+            <script>
+              !function(d,s,id){
+                var js,fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){js=d.createElement(s);
+                  js.id=id;js.src="//platform.twitter.com/widgets.js";
+                  fjs.parentNode.insertBefore(js,fjs);
+                }
+              }
+                (document,"script","twitter-wjs");
+            </script>
+          </div>
+        </div>
+  </div>
+</body>
+</html>
